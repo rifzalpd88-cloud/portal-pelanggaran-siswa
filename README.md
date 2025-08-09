@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Pelanggaran Siswa - SMAN 1 Natal</title>
+    <title>Formulir Pencatatan Pelanggaran - SMAN 1 Natal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,31 +15,33 @@
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen flex items-center justify-center p-4">
+<body class="bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen py-10 px-4">
 
-    <div class="w-full max-w-md mx-auto bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 text-white border border-white/20">
-        <div class="text-center">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Logo_tut_wuri_handayani.svg/1200px-Logo_tut_wuri_handayani.svg.png" alt="Logo Sekolah" class="mx-auto mb-6 w-28 h-28 p-2 bg-white/20 rounded-full shadow-lg">
-            <h1 class="text-3xl font-extrabold">Portal Pelanggaran Siswa</h1>
-            <p class="text-gray-300 mt-2 text-lg">SMA Negeri 1 Natal</p>
+    <div class="w-full max-w-3xl mx-auto bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-6 md:p-8 text-white border border-white/20">
+        <div class="text-center mb-6">
+            <h1 class="text-3xl font-extrabold">Catat Pelanggaran Baru</h1>
+            <p class="text-gray-300 mt-2">Formulir ini terhubung langsung ke rekap data.</p>
         </div>
 
-        <div class="mt-10 space-y-5">
-            <a href="form-pelanggaran.html" class="group block w-full text-center bg-yellow-400 text-gray-900 font-bold py-4 px-4 rounded-xl shadow-lg hover:bg-yellow-300 focus:outline-none focus:ring-4 focus:ring-yellow-400/50 transition-all duration-300 transform hover:-translate-y-1">
-                <div class="flex items-center justify-center">
-                    <i data-lucide="file-plus-2" class="mr-3 h-6 w-6"></i>
-                    Catat Pelanggaran Baru
-                </div>
-            </a>
+        <div class="aspect-w-1 aspect-h-1 md:aspect-w-4 md:aspect-h-3 lg:aspect-w-3 lg:aspect-h-2 overflow-hidden rounded-xl border border-white/10 shadow-inner">
+             <iframe 
+                src="https://docs.google.com/forms/d/e/1FAIpQLSfSAmPIsCHGX0ShpYFK8gzd8sn1AmYT5ftImKSHZdsoh7CSlg/viewform?embedded=true" 
+                class="w-full h-full"
+                frameborder="0" 
+                marginheight="0" 
+                marginwidth="0">
+                Memuat…
+            </iframe>
+        </div>
 
-            <a href="https://docs.google.com/spreadsheets/d/1ANxe4deZFKAmMNSUhwzx0QVzJfZzgX1bqefxU0AmPJ4/edit#gid=157047955" target="_blank" class="group block w-full text-center bg-white/20 text-white font-bold py-4 px-4 rounded-xl shadow-lg hover:bg-white/30 focus:outline-none focus:ring-4 focus:ring-white/50 transition-all duration-300 transform hover:-translate-y-1">
-                <div class="flex items-center justify-center">
-                    <i data-lucide="bar-chart-3" class="mr-3 h-6 w-6"></i>
-                    Lihat Rekap Pelanggaran
-                </div>
+        <div class="text-center mt-8">
+            <a href="index.html" class="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 font-semibold transition-colors duration-300">
+                <i data-lucide="arrow-left-circle" class="h-5 w-5"></i>
+                Kembali ke Portal Utama
             </a>
         </div>
     </div>
+
     <script>
       lucide.createIcons();
     </script>
