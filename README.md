@@ -20,13 +20,12 @@
     <div class="w-full max-w-md mx-auto bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 text-white border border-white/20">
         <div class="text-center">
             <img src="logo-sekolah.jpg" alt="Logo Sekolah SMAN 1 Natal" class="mx-auto mb-6 w-32 h-32 bg-white/20 rounded-full shadow-lg object-cover">
-            
             <h1 class="text-3xl font-extrabold">Portal Pelanggaran Siswa</h1>
             <p class="text-gray-300 mt-2 text-lg">SMA Negeri 1 Natal</p>
         </div>
 
         <div class="mt-10 space-y-5">
-            <a href="form-pelanggaran.html" class="group block w-full text-center bg-yellow-400 text-gray-900 font-bold py-4 px-4 rounded-xl shadow-lg hover:bg-yellow-300 focus:outline-none focus:ring-4 focus:ring-yellow-400/50 transition-all duration-300 transform hover:-translate-y-1">
+            <a href="pilih-pelanggaran.html" class="group block w-full text-center bg-yellow-400 text-gray-900 font-bold py-4 px-4 rounded-xl shadow-lg hover:bg-yellow-300 focus:outline-none focus:ring-4 focus:ring-yellow-400/50 transition-all duration-300 transform hover:-translate-y-1">
                 <div class="flex items-center justify-center">
                     <i data-lucide="file-plus-2" class="mr-3 h-6 w-6"></i>
                     Catat Pelanggaran Baru
