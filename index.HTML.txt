@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulir Detail Pelanggaran Siswa - SMAN 1 Natal</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -82,7 +84,7 @@
                 </div>
             </fieldset>
 
-             <fieldset class="border-t border-gray-200 pt-6">
+            <fieldset class="border-t border-gray-200 pt-6">
                 <legend class="text-lg font-semibold text-gray-900">3. Pelapor & Tindak Lanjut</legend>
                  <div class="mt-4 grid grid-cols-1 gap-y-6">
                     <div>
@@ -100,7 +102,6 @@
                 </div>
             </fieldset>
 
-
             <div class="pt-6">
                 <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     Kirim Laporan Pelanggaran
@@ -108,7 +109,7 @@
             </div>
         </form>
 
-         <div class="text-center mt-6">
+        <div class="text-center mt-6">
             <a href="index.html" class="text-sm text-blue-600 hover:text-blue-500">
                 &larr; Kembali ke Portal Utama
             </a>
