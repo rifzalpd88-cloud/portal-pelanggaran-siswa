@@ -55,4 +55,106 @@
             </div>
 
             <div class="flex flex-col sm:flex-row-reverse gap-4 pt-4">
-                <button type="submit" id="submit-button" class="w-full sm:w-auto flex justify-center items-center gap-3 py-3 px-8 border border-transparent rounded-xl shadow-lg text-base font-bold text-gray-900 bg-yellow-400 hover:bg-
+                <button type="submit" id="submit-button" class="w-full sm:w-auto flex justify-center items-center gap-3 py-3 px-8 border border-transparent rounded-xl shadow-lg text-base font-bold text-gray-900 bg-yellow-400 hover:bg-yellow-300 focus:outline-none focus:ring-4 focus:ring-yellow-400/50 transition-all duration-300 transform hover:-translate-y-1">
+                    <i data-lucide="send" class="h-5 w-5"></i>
+                    <span id="button-text">Kirim Laporan</span>
+                </button>
+                <a href="pilih-pelanggaran.html" class="w-full sm:w-auto text-center py-3 px-8 rounded-xl text-white bg-white/20 hover:bg-white/30 transition-colors duration-300">
+                    Pilih Ulang
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const pelanggaran = params.get('pelanggaran');
+            const poin = params.get('poin');
+
+            if (pelanggaran) {
+                document.getElementById('jenis-pelanggaran-terpilih').textContent = pelanggaran;
+                document.getElementById('input-pelanggaran').value = pelanggaran;
+            }
+            if (poin) {
+                document.getElementById('poin-pelanggaran').textContent = `(${poin} Poin)`;
+                document.getElementById('input-poin').value = poin;
+            }
+        });
+        lucide.createIcons();
+        
+        const form = document.getElementById('laporan-form');
+        const submitButton = document.getElementById('submit-button');
+        const buttonText = document.getElementById('button-text');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const namaSiswaInput = document.getElementById('nama-siswa');
+            const kelasInput = document.getElementById('kelas');
+            const namaPelaporInput = document.getElementById('nama-pelapor');
+            const fotoInput = document.getElementById('bukti-foto');
+
+            if (namaSiswaInput.value.trim() === '') { alert('Nama siswa wajib diisi.'); namaSiswaInput.focus(); return; }
+            if (kelasInput.value.trim() === '') { alert('Kelas wajib diisi.'); kelasInput.focus(); return; }
+            if (namaPelaporInput.value.trim() === '') { alert('Nama guru pelapor wajib diisi.'); namaPelaporInput.focus(); return; }
+            if (fotoInput.files.length === 0) { alert('Mohon unggah foto bukti pelanggaran.'); fotoInput.focus(); return; }
+
+            submitButton.classList.add('loading');
+            buttonText.textContent = 'Mengirim...';
+
+            const file = fotoInput.files[0];
+            const reader = new FileReader();
+            
+            reader.readAsDataURL(file);
+            reader.onload = function() {
+                const fileData = reader.result;
+                const data = {
+                    jenisPelanggaran: document.getElementById('input-pelanggaran').value,
+                    poin: document.getElementById('input-poin').value,
+                    namaSiswa: namaSiswaInput.value,
+                    kelas: kelasInput.value,
+                    namaPelapor: namaPelaporInput.value,
+                    catatan: document.getElementById('catatan').value,
+                    file: fileData,
+                    fileName: file.name
+                };
+
+                // URL WEB APP BARU ANDA SUDAH DIMASUKKAN DI SINI
+                const URL_WEB_APP = "https://script.google.com/macros/s/AKfycbxLGiaJomzsaLNyU7AN7Uu0PpXsNb9ggXFzadIlKQyHblPUR_aV_JbDziNrgXpxWW2z/exec";
+
+                fetch(URL_WEB_APP, {
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                })
+                .then(res => res.json())
+                .then(response => {
+                    console.log(response);
+                    if (response.status === 'success') {
+                        alert('Laporan berhasil terkirim!');
+                        form.reset(); 
+                    } else {
+                        throw new Error('Server merespon dengan error: ' + response.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Gagal mengirim laporan. Detail: ' + error.message);
+                })
+                .finally(() => {
+                    submitButton.classList.remove('loading');
+                    buttonText.textContent = 'Kirim Laporan';
+                });
+            };
+            
+            reader.onerror = function(error) {
+                alert('Gagal membaca file.');
+                console.log('Error: ', error);
+                submitButton.classList.remove('loading');
+                buttonText.textContent = 'Kirim Laporan';
+            };
+        });
+
+    </script>
+</body>
+</html>
