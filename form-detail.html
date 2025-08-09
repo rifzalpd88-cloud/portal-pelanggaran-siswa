@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Laporan - SMAN 1 Natal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .form-input {
+            @apply mt-1 block w-full rounded-lg border-gray-600 bg-gray-700/50 text-white shadow-sm focus:border-yellow-400 focus:ring focus:ring-yellow-400 focus:ring-opacity-50 transition-colors duration-300;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen py-10 px-4">
+
+    <div class="w-full max-w-2xl mx-auto bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 text-white border border-white/20">
+        
+        <div class="mb-8">
+            <p class="text-yellow-400 font-semibold">Jenis Pelanggaran Dipilih:</p>
+            <h1 id="jenis-pelanggaran-terpilih" class="text-3xl font-extrabold text-white">Memuat...</h1>
+            <p id="poin-pelanggaran" class="text-gray-300 text-lg"></p>
+        </div>
+
+        <form action="#" method="POST" class="space-y-6">
+            <input type="hidden" id="input-pelanggaran" name="jenis-pelanggaran">
+            <input type="hidden" id="input-poin" name="poin">
+
+            <div>
+                <label for="nama-siswa" class="block text-sm font-medium text-gray-300">Nama Siswa</label>
+                <input type="text" name="nama-siswa" id="nama-siswa" required class="form-input" placeholder="Tulis nama lengkap siswa">
+            </div>
+             <div>
+                <label for="kelas" class="block text-sm font-medium text-gray-300">Kelas</label>
+                <input type="text" name="kelas" id="kelas" required class="form-input" placeholder="Contoh: XII IPA 1">
+            </div>
+             <div>
+                <label for="bukti-foto" class="block text-sm font-medium text-gray-300">Upload Foto Bukti</label>
+                <input type="file" name="bukti-foto" id="bukti-foto" required class="mt-1 block w-full text-sm text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-gray-700 file:text-yellow-400 hover:file:bg-gray-600 transition-colors duration-300 cursor-pointer">
+            </div>
+            <div>
+                <label for="catatan" class="block text-sm font-medium text-gray-300">Catatan Tambahan (Opsional)</label>
+                <textarea id="catatan" name="catatan" rows="3" class="form-input" placeholder="Jelaskan detail singkat jika perlu..."></textarea>
+            </div>
+
+            <div class="flex flex-col sm:flex-row-reverse gap-4 pt-4">
+                <button type="submit" class="w-full sm:w-auto flex justify-center items-center gap-3 py-3 px-8 border border-transparent rounded-xl shadow-lg text-base font-bold text-gray-900 bg-yellow-400 hover:bg-yellow-300 focus:outline-none focus:ring-4 focus:ring-yellow-400/50 transition-all duration-300 transform hover:-translate-y-1">
+                    <i data-lucide="send" class="h-5 w-5"></i>
+                    Kirim Laporan
+                </button>
+                <a href="pilih-pelanggaran.html" class="w-full sm:w-auto text-center py-3 px-8 rounded-xl text-white bg-white/20 hover:bg-white/30 transition-colors duration-300">
+                    Pilih Ulang
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const pelanggaran = params.get('pelanggaran');
+            const poin = params.get('poin');
+
+            if (pelanggaran) {
+                document.getElementById('jenis-pelanggaran-terpilih').textContent = pelanggaran;
+                document.getElementById('input-pelanggaran').value = pelanggaran;
+            }
+            if (poin) {
+                document.getElementById('poin-pelanggaran').textContent = `(${poin} Poin)`;
+                document.getElementById('input-poin').value = poin;
+            }
+        });
+        lucide.createIcons();
+    </script>
+</body>
+</html>
