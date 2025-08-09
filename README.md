@@ -3,118 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulir Detail Pelanggaran Siswa - SMAN 1 Natal</title>
-    
+    <title>Portal Pelanggaran Siswa - SMAN 1 Natal</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
     </style>
 </head>
-<body class="bg-gray-100 py-8">
+<body class="bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen flex items-center justify-center p-4">
 
-    <div class="w-full max-w-lg mx-auto p-6 md:p-8 bg-white rounded-xl shadow-lg">
-        <div class="text-center mb-8">
-            <h1 class="text-2xl font-bold text-gray-800">Formulir Laporan Pelanggaran</h1>
-            <p class="text-gray-500 mt-1">Lengkapi semua data pelanggaran dengan detail.</p>
+    <div class="w-full max-w-md mx-auto bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 text-white border border-white/20">
+        <div class="text-center">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Logo_tut_wuri_handayani.svg/1200px-Logo_tut_wuri_handayani.svg.png" alt="Logo Sekolah" class="mx-auto mb-6 w-28 h-28 p-2 bg-white/20 rounded-full shadow-lg">
+            <h1 class="text-3xl font-extrabold">Portal Pelanggaran Siswa</h1>
+            <p class="text-gray-300 mt-2 text-lg">SMA Negeri 1 Natal</p>
         </div>
 
-        <form action="#" method="POST" class="space-y-6">
-            
-            <fieldset class="border-t border-gray-200 pt-6">
-                <legend class="text-lg font-semibold text-gray-900">1. Identitas Siswa</legend>
-                
-                <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                    <div>
-                        <label for="nama-siswa" class="block text-sm font-medium text-gray-700">Nama Siswa</label>
-                        <input type="text" name="nama-siswa" id="nama-siswa" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Nama lengkap siswa">
-                    </div>
-                    <div>
-                        <label for="kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
-                        <input type="text" name="kelas" id="kelas" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Contoh: XII IPA 1">
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label for="nisn" class="block text-sm font-medium text-gray-700">NIS / NISN</label>
-                        <input type="text" name="nisn" id="nisn" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Nomor Induk Siswa">
-                    </div>
+        <div class="mt-10 space-y-5">
+            <a href="form-pelanggaran.html" class="group block w-full text-center bg-yellow-400 text-gray-900 font-bold py-4 px-4 rounded-xl shadow-lg hover:bg-yellow-300 focus:outline-none focus:ring-4 focus:ring-yellow-400/50 transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex items-center justify-center">
+                    <i data-lucide="file-plus-2" class="mr-3 h-6 w-6"></i>
+                    Catat Pelanggaran Baru
                 </div>
-            </fieldset>
+            </a>
 
-            <fieldset class="border-t border-gray-200 pt-6">
-                <legend class="text-lg font-semibold text-gray-900">2. Detail Pelanggaran</legend>
-                <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                    <div>
-                        <label for="tanggal-kejadian" class="block text-sm font-medium text-gray-700">Tanggal Kejadian</label>
-                        <input type="date" name="tanggal-kejadian" id="tanggal-kejadian" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                    </div>
-                     <div>
-                        <label for="waktu-kejadian" class="block text-sm font-medium text-gray-700">Waktu Kejadian (Kira-kira)</label>
-                        <input type="time" name="waktu-kejadian" id="waktu-kejadian" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label for="jenis-pelanggaran" class="block text-sm font-medium text-gray-700">Jenis Pelanggaran</label>
-                        <select id="jenis-pelanggaran" name="jenis-pelanggaran" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                            <option value="" disabled selected>-- Pilih Jenis Pelanggaran --</option>
-                            <optgroup label="Pelanggaran Ringan (5 Poin)">
-                                <option value="Terlambat">Terlambat Masuk</option>
-                                <option value="Seragam Tidak Lengkap">Seragam/Atribut Tidak Lengkap</option>
-                                <option value="Rambut Tidak Rapi">Rambut Tidak Rapi / Diwarnai</option>
-                            </optgroup>
-                            <optgroup label="Pelanggaran Sedang (15 Poin)">
-                                <option value="Tidak Mengerjakan Tugas">Tidak Mengerjakan Tugas</option>
-                                <option value="Mengganggu KBM">Mengganggu Proses Belajar Mengajar</option>
-                                <option value="Membuang Sampah Sembarangan">Membuang Sampah Sembarangan</option>
-                            </optgroup>
-                             <optgroup label="Pelanggaran Berat (25-50 Poin)">
-                                <option value="Merokok di Sekolah">Merokok di Area Sekolah</option>
-                                <option value="Absen Tanpa Keterangan">Absen Tanpa Keterangan (Bolos)</option>
-                                <option value="Vandalisme">Vandalisme (Mencoret/Merusak Fasilitas)</option>
-                                <option value="Berkelahi">Berkelahi</option>
-                            </optgroup>
-                            <option value="Lainnya">Lainnya</option>
-                        </select>
-                    </div>
-                     <div class="sm:col-span-2">
-                        <label for="catatan" class="block text-sm font-medium text-gray-700">Deskripsi / Kronologi Kejadian</label>
-                        <textarea id="catatan" name="catatan" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Jelaskan secara singkat apa yang terjadi, siapa saja yang terlibat, dan di mana lokasinya."></textarea>
-                    </div>
+            <a href="https://docs.google.com/spreadsheets/d/1ANxe4deZFKAmMNSUhwzx0QVzJfZzgX1bqefxU0AmPJ4/edit#gid=157047955" target="_blank" class="group block w-full text-center bg-white/20 text-white font-bold py-4 px-4 rounded-xl shadow-lg hover:bg-white/30 focus:outline-none focus:ring-4 focus:ring-white/50 transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex items-center justify-center">
+                    <i data-lucide="bar-chart-3" class="mr-3 h-6 w-6"></i>
+                    Lihat Rekap Pelanggaran
                 </div>
-            </fieldset>
-
-            <fieldset class="border-t border-gray-200 pt-6">
-                <legend class="text-lg font-semibold text-gray-900">3. Pelapor & Tindak Lanjut</legend>
-                 <div class="mt-4 grid grid-cols-1 gap-y-6">
-                    <div>
-                        <label for="nama-guru" class="block text-sm font-medium text-gray-700">Nama Guru Pelapor</label>
-                        <input type="text" name="nama-guru" id="nama-guru" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Tulis nama lengkap Anda">
-                    </div>
-                    <div>
-                        <label for="tindakan" class="block text-sm font-medium text-gray-700">Tindakan yang Sudah Diambil (Jika Ada)</label>
-                        <input type="text" name="tindakan" id="tindakan" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="Contoh: Diberi teguran lisan, diminta push-up, dll.">
-                    </div>
-                    <div>
-                        <label for="bukti-foto" class="block text-sm font-medium text-gray-700">Upload Bukti (Opsional)</label>
-                        <input type="file" name="bukti-foto" id="bukti-foto" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
-                    </div>
-                </div>
-            </fieldset>
-
-            <div class="pt-6">
-                <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                    Kirim Laporan Pelanggaran
-                </button>
-            </div>
-        </form>
-
-        <div class="text-center mt-6">
-            <a href="index.html" class="text-sm text-blue-600 hover:text-blue-500">
-                &larr; Kembali ke Portal Utama
             </a>
         </div>
     </div>
-
+    <script>
+      lucide.createIcons();
+    </script>
 </body>
 </html>
