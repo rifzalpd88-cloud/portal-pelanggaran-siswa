@@ -10,25 +10,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-        .form-input {
-            @apply mt-1 block w-full rounded-lg border-gray-600 bg-gray-700/50 text-white shadow-sm focus:border-yellow-400 focus:ring focus:ring-yellow-400 focus:ring-opacity-50 transition-colors duration-300;
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .form-input { @apply mt-1 block w-full rounded-lg border-gray-500 bg-gray-700 text-white shadow-sm placeholder-gray-400 focus:border-yellow-400 focus:ring focus:ring-yellow-400 focus:ring-opacity-50 transition-colors duration-300; }
+        /* Style untuk tombol saat loading */
+        .loading {
+            @apply cursor-not-allowed opacity-70;
         }
     </style>
 </head>
 <body class="bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen py-10 px-4">
 
     <div class="w-full max-w-2xl mx-auto bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 text-white border border-white/20">
-        
         <div class="mb-8">
             <p class="text-yellow-400 font-semibold">Jenis Pelanggaran Dipilih:</p>
             <h1 id="jenis-pelanggaran-terpilih" class="text-3xl font-extrabold text-white">Memuat...</h1>
             <p id="poin-pelanggaran" class="text-gray-300 text-lg"></p>
         </div>
 
-        <form action="#" method="POST" class="space-y-6">
+        <form id="laporan-form" class="space-y-6">
             <input type="hidden" id="input-pelanggaran" name="jenis-pelanggaran">
             <input type="hidden" id="input-poin" name="poin">
 
@@ -38,7 +37,11 @@
             </div>
              <div>
                 <label for="kelas" class="block text-sm font-medium text-gray-300">Kelas</label>
-                <input type="text" name="kelas" id="kelas" required class="form-input" placeholder="Contoh: XII IPA 1">
+                <input type="text" name="kelas" id="kelas" required class="form-input" placeholder="Contoh: X-1">
+            </div>
+            <div>
+                <label for="nama-pelapor" class="block text-sm font-medium text-gray-300">Nama Guru Pelapor</label>
+                <input type="text" name="nama-pelapor" id="nama-pelapor" required class="form-input" placeholder="Tulis nama lengkap Anda">
             </div>
              <div>
                 <label for="bukti-foto" class="block text-sm font-medium text-gray-300">Upload Foto Bukti</label>
@@ -50,9 +53,9 @@
             </div>
 
             <div class="flex flex-col sm:flex-row-reverse gap-4 pt-4">
-                <button type="submit" class="w-full sm:w-auto flex justify-center items-center gap-3 py-3 px-8 border border-transparent rounded-xl shadow-lg text-base font-bold text-gray-900 bg-yellow-400 hover:bg-yellow-300 focus:outline-none focus:ring-4 focus:ring-yellow-400/50 transition-all duration-300 transform hover:-translate-y-1">
+                <button type="submit" id="submit-button" class="w-full sm:w-auto flex justify-center items-center gap-3 py-3 px-8 border border-transparent rounded-xl shadow-lg text-base font-bold text-gray-900 bg-yellow-400 hover:bg-yellow-300 focus:outline-none focus:ring-4 focus:ring-yellow-400/50 transition-all duration-300 transform hover:-translate-y-1">
                     <i data-lucide="send" class="h-5 w-5"></i>
-                    Kirim Laporan
+                    <span id="button-text">Kirim Laporan</span>
                 </button>
                 <a href="pilih-pelanggaran.html" class="w-full sm:w-auto text-center py-3 px-8 rounded-xl text-white bg-white/20 hover:bg-white/30 transition-colors duration-300">
                     Pilih Ulang
@@ -77,6 +80,70 @@
             }
         });
         lucide.createIcons();
+        
+        // --- Skrip Pengiriman Formulir ---
+        const form = document.getElementById('laporan-form');
+        const submitButton = document.getElementById('submit-button');
+        const buttonText = document.getElementById('button-text');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Mencegah form mengirim cara biasa
+
+            submitButton.classList.add('loading');
+            buttonText.textContent = 'Mengirim...';
+
+            const file = document.getElementById('bukti-foto').files[0];
+            const reader = new FileReader();
+            
+            reader.readAsDataURL(file);
+            reader.onload = function() {
+                const fileData = reader.result;
+                const data = {
+                    jenisPelanggaran: document.getElementById('input-pelanggaran').value,
+                    poin: document.getElementById('input-poin').value,
+                    namaSiswa: document.getElementById('nama-siswa').value,
+                    kelas: document.getElementById('kelas').value,
+                    namaPelapor: document.getElementById('nama-pelapor').value,
+                    catatan: document.getElementById('catatan').value,
+                    file: fileData,
+                    fileName: file.name
+                };
+
+                // URL WEB APP ANDA SUDAH DIMASUKKAN DI SINI
+                const URL_WEB_APP = "https://script.google.com/a/macros/guru.sma.belajar.id/s/AKfycbwSvDkLEEvBm_dGJjpUzHARN7FfqnqL3BupwI6fvRhJYIHCE0oHsjy5Vdn87qSER-vK/exec";
+
+                fetch(URL_WEB_APP, {
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                })
+                .then(res => res.json())
+                .then(response => {
+                    console.log(response);
+                    if (response.status === 'success') {
+                        alert('Laporan berhasil terkirim!');
+                        form.reset(); // Mengosongkan form
+                    } else {
+                        throw new Error(response.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Gagal mengirim laporan. Pastikan semua kolom terisi dengan benar.');
+                })
+                .finally(() => {
+                    submitButton.classList.remove('loading');
+                    buttonText.textContent = 'Kirim Laporan';
+                });
+            };
+            
+            reader.onerror = function(error) {
+                alert('Gagal membaca file.');
+                console.log('Error: ', error);
+                submitButton.classList.remove('loading');
+                buttonText.textContent = 'Kirim Laporan';
+            };
+        });
+
     </script>
 </body>
 </html>
